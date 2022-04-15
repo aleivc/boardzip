@@ -37,7 +37,7 @@ export default function BasicLayout() {
                     <nav>
                         <Link
                             onClick={() => {
-                                navigate('/product')
+                                navigate('/skates')
                             }}
                             variant="button"
                             color="text.primary"
@@ -47,7 +47,11 @@ export default function BasicLayout() {
                             SkateBoard
                         </Link>
                     </nav>
-                    <Button href="#" variant="outlined" sx={{my: 1, mx: 1.5}}>
+                    <Button
+                        onClick={() => {
+                            navigate('/user/signIn')
+                        }}
+                        href="" variant="outlined" sx={{my: 1, mx: 1.5}}>
                         Login
                     </Button>
                 </Toolbar>
