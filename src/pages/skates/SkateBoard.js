@@ -2,6 +2,10 @@ import {useRef, Suspense} from 'react';
 import {OrbitControls, Environment, ContactShadows} from "@react-three/drei";
 import {useGLTF} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import {Card} from "@mui/material";
+import ActionCard from "./Action/ActionCard";
 
 function Shoe({...props}) {
     const group = useRef()
@@ -23,16 +27,30 @@ function Shoe({...props}) {
 
 function SkateBoard() {
     return (
-        <Canvas>
-            <ambientLight intensity={0.2} />
-            <spotLight intensity={0.3} position={[5, 20, 20]}/>
-            <Suspense fallback={null}>
-                <Shoe/>
-                <Environment files="hdr.hdr" />
-                <ContactShadows rotation-x={Math.PI / 2} position={[0, -0.8, 0]} opacity={0.25} width={10} height={10} blur={2} far={1} />
-            </Suspense>
-            <OrbitControls />
-        </Canvas>
+        <>
+            <Grid container spacing={1} style={{height: '100%'}}>
+                <Grid item xs>
+                   <ActionCard />
+                </Grid>
+                <Grid item xs={8}>
+                    <Canvas>
+                        <ambientLight intensity={0.2}/>
+                        <spotLight intensity={0.3} position={[5, 20, 20]}/>
+                        <Suspense fallback={null}>
+                            <Shoe/>
+                            <Environment files="hdr.hdr"/>
+                            <ContactShadows rotation-x={Math.PI / 2} position={[0, -0.8, 0]} opacity={0.25}
+                                            width={10}
+                                            height={10} blur={2} far={1}/>
+                        </Suspense>
+                        <OrbitControls/>
+                    </Canvas>
+                </Grid>
+                <Grid item xs>
+                   <ActionCard />
+                </Grid>
+            </Grid>
+        </>
     )
 }
 
